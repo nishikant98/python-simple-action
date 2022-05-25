@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        project_id: ${{secrets.GCP_PROJECT}}
+        credientials: ${{secrets.GCP_CREDENTIALS}}
     - uses: actions/checkout@v2
     - name: Deploy an App Engine app
       id: deploy
@@ -20,5 +25,5 @@ jobs:
         deliverables: app.yaml 
         service: python-app
         version: v12
-        project_id: ${{ secrets.GCP_PROJECT }}
-        credentials: ${{ secrets.GCP_CREDENTIALS }}
+        project_id: ${{ secrets.GCP_PROJECT}}
+        credentials: ${{secrets.GCP_CREDENTIALS}}
